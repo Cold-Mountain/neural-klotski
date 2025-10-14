@@ -221,13 +221,30 @@ class SimulationConfig:
 @dataclass
 class NeuralKlotskiConfig:
     """Complete configuration for Neural-Klotski system"""
-    dynamics: DynamicsConfig = DynamicsConfig()
-    wires: WireConfig = WireConfig()
-    dyes: DyeConfig = DyeConfig()
-    learning: LearningConfig = LearningConfig()
-    thresholds: ThresholdConfig = ThresholdConfig()
-    network: NetworkConfig = NetworkConfig()
-    simulation: SimulationConfig = SimulationConfig()
+    dynamics: DynamicsConfig = None
+    wires: WireConfig = None
+    dyes: DyeConfig = None
+    learning: LearningConfig = None
+    thresholds: ThresholdConfig = None
+    network: NetworkConfig = None
+    simulation: SimulationConfig = None
+
+    def __post_init__(self):
+        """Initialize with defaults if None"""
+        if self.dynamics is None:
+            self.dynamics = DynamicsConfig()
+        if self.wires is None:
+            self.wires = WireConfig()
+        if self.dyes is None:
+            self.dyes = DyeConfig()
+        if self.learning is None:
+            self.learning = LearningConfig()
+        if self.thresholds is None:
+            self.thresholds = ThresholdConfig()
+        if self.network is None:
+            self.network = NetworkConfig()
+        if self.simulation is None:
+            self.simulation = SimulationConfig()
 
     def validate(self) -> bool:
         """Validate all configuration components"""
