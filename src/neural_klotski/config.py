@@ -55,6 +55,7 @@ class WireConfig:
     damage_rate: float = 0.05  # Damage accumulation rate (0.01-0.1)
     repair_rate: float = 0.005  # Repair rate (0.001-0.01)
     max_damage: float = 2.5  # Maximum damage (1.0-5.0)
+    fatigue_rate: float = 0.01  # Fatigue accumulation rate (0.005-0.02)
 
     def validate(self) -> bool:
         """Validate wire parameters"""
@@ -66,7 +67,8 @@ class WireConfig:
             50.0 <= self.signal_speed <= 200.0,
             0.01 <= self.damage_rate <= 0.1,
             0.001 <= self.repair_rate <= 0.01,
-            1.0 <= self.max_damage <= 5.0
+            1.0 <= self.max_damage <= 5.0,
+            0.005 <= self.fatigue_rate <= 0.02
         ]
         return all(checks)
 
